@@ -64,14 +64,14 @@ $(document).ready(function () {
       '<div class="col-2">' +
       '<div class="form-group">' +
       '<label for="rate' + counter + '">Rate:</label>' +
-      '<input id="rate' + counter + '" class="form-control" type="number" placeholder="Rate"' +
+      '<input id="rate' + counter + '" class="form-control" min="0.01" type="number" placeholder="Rate"' +
       ' oninput="updatePrice(' + counter + ');">' +
       '</div>' +
       '</div>' +
       '<div class="col-2">' +
       '<div class="form-group">' + '<label for="weight' + counter +
       '">Weight:</label>' +
-      '<input id="weight' + counter + '" class="form-control" type="number" placeholder="Weight"' +
+      '<input id="weight' + counter + '" class="form-control" min="0.01" type="number" placeholder="Weight"' +
       ' oninput="updatePrice(' + counter + ');">' +
       '</div>' +
       '</div>' +
