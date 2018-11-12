@@ -25,12 +25,18 @@ function removeItem(i) {
   updateTotal();
 }
 
+
+
 $(document).ready(function () {
   var content = "";
 
   showContent();
 
   showTotal();
+
+  $("#submit_Invoice").click(function () {
+
+  });
 
   $("#add_item").click(function () {
     counter++;
