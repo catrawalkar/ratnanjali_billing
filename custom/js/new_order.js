@@ -1,5 +1,5 @@
 var counter = 1;
-var i;
+// var i;
 var totalPrice = 0;
 
 function updatePrice(i) {
