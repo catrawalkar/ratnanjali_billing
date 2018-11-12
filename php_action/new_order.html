@@ -11,6 +11,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="../custom/js/new_order.js"></script>
+    <script>
+        function myfunction1(i)
+        { 
+            var a=document.getElementById('rate' + i).value;
+            var b=document.getElementById('weight' + i).value;
+            var c=a*b;
+            document.getElementById('price' + i ).value=c;
+            myfunction3();
+        }
+        function myfunction3()
+        {
+            var totalPrice=0;
+
+            for(var i=1;i<=counter;i++)
+            {
+                if(document.getElementById('price'+i)!=null){
+                    totalPrice+=Number(document.getElementById('price'+i).value);
+                }
+                
+            }
+            document.getElementById('total').innerHTML = 'Rs. ' + totalPrice;
+        }
+        </script>
     <title>Title</title>
 </head>
 
