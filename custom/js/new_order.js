@@ -34,10 +34,6 @@ $(document).ready(function () {
 
   showTotal();
 
-  $("#submit_Invoice").click(function () {
-
-  });
-
   $("#add_item").click(function () {
     counter++;
     showContent();
@@ -89,4 +85,54 @@ $(document).ready(function () {
       '</div>' +
       '</div>';
   }
+
+  $("#submit_Invoice").click(function () {
+    var name_valid = $("#name").val();
+    var email_valid = $("#email").val();
+    var mobile_no_valid = $("#mobile_no").val();
+    var date_of_birth_valid = $("#date_of_birth").val();
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var items = [];
+    var rates = [];
+    var weights = [];
+    var prices = [];
+    var total = [];
+    for (var i = 1; i < counter; i++) {
+      if (document.getElementById('price' + i) != null) {
+        items.push(document.getElementById('item' + i));
+        totalPrice += Number(document.getElementById('price' + i).value);
+      }
+    }
+
+    if (name_valid.length == 0) {
+      document.getElementById("name").classList.add("is-invalid");
+      document.getElementById("name").focus();
+    } else if (email_valid.length == 0 | reg.test(email_valid) == false) {
+      document.getElementById("email").classList.add("is-invalid");
+      document.getElementById("email").focus();
+    } else if (mobile_no_valid.length == 0 | mobile_no_valid < 6999999999 | mobile_no_valid > 9999999999) {
+      document.getElementById("mobile_no").classList.add("is-invalid");
+      document.getElementById("mobile_no").focus();
+    } else if (date_of_birth_valid.length == 0) {
+      document.getElementById("date_of_birth").classList.add("is-invalid");
+      document.getElementById("date_of_birth").focus();
+    } else {
+      $.get("new_order.php", {
+        "name_valid": name_valid,
+        "email_valid": email_valid,
+        "mobile_no_valid": mobile_no_valid,
+        "date_of_birth_valid": date_of_birth_valid
+      }, function (data) {
+        alert("Thank you for your response!");
+        $("#name").val("");
+        document.getElementById("name").classList.remove("is-invalid");
+        $("#email").val("");
+        document.getElementById("email").classList.remove("is-invalid");
+        $("#mobile_no").val("");
+        document.getElementById("mobile_no").classList.remove("is-invalid");
+        $("#date_of_birth").val("");
+        document.getElementById("date_of_birth").classList.remove("is-invalid");
+      });
+    }
+  });
 });
