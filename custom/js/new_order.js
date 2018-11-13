@@ -17,7 +17,7 @@ function updateTotal() {
       totalPrice += Number(document.getElementById('price' + i).value);
     }
   }
-  document.getElementById('total').innerHTML = 'Rs. ' + totalPrice;
+  document.getElementById('total').innerHTML = totalPrice;
 }
 
 function removeItem(i) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
   });
 
   function showTotal() {
-    document.getElementById("total").innerHTML = "Rs. " + totalPrice;
+    document.getElementById("total").innerHTML = totalPrice;
   }
 
   function showContent() {
@@ -105,8 +105,7 @@ $(document).ready(function () {
         prices.push(document.getElementById('price' + i).value);
       }
     }
-    var total = $("#total").val();
-
+    var total = Number(document.getElementById('total').innerHTML);
     if (name_valid.length == 0) {
       document.getElementById("name").classList.add("is-invalid");
       document.getElementById("name").focus();
@@ -119,12 +118,16 @@ $(document).ready(function () {
     } else if (date_of_birth_valid.length == 0) {
       document.getElementById("date_of_birth").classList.add("is-invalid");
       document.getElementById("date_of_birth").focus();
+    } else if (total == 0) {
+      document.getElementById("item" + counter).classList.add("is-invalid");
+      document.getElementById("item" + counter).focus();
     } else {
       $.get("new_order.php", {
         "name_valid": name_valid,
         "email_valid": email_valid,
         "mobile_no_valid": mobile_no_valid,
-        "date_of_birth_valid": date_of_birth_valid
+        "date_of_birth_valid": date_of_birth_valid,
+        "total": total
       }, function (data) {
         alert("Thank you for your response!");
         $("#name").val("");
