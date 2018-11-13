@@ -96,13 +96,16 @@ $(document).ready(function () {
     var rates = [];
     var weights = [];
     var prices = [];
-    var total = [];
+
     for (var i = 1; i < counter; i++) {
       if (document.getElementById('price' + i) != null) {
         items.push(document.getElementById('item' + i));
-        totalPrice += Number(document.getElementById('price' + i).value);
+        rates.push(document.getElementById('rate' + i));
+        weights.push(document.getElementById('weight' + i));
+        prices.push(document.getElementById('price' + i).value);
       }
     }
+    var total = $("#total").val();
 
     if (name_valid.length == 0) {
       document.getElementById("name").classList.add("is-invalid");
